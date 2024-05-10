@@ -17,7 +17,7 @@ public class Role : IdentityRole<Guid>, IBaseEntity
     public IEnumerable<UserRole> UserRoles { get; set; }
 
     // Additional information of this table.
-    public static class MetaData
+    public static class MetaData 
     {
         public static class Name
         {
