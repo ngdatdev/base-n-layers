@@ -1,4 +1,5 @@
 using System;
+using DataAccess.Data.DataSeeding;
 using DataAccess.Entities;
 using DataAccess.Helpers;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -17,14 +18,15 @@ public class DatabaseContext : IdentityDbContext<User, Role, Guid>
     /// <param name="builder">
     ///     Model builder access the database.
     /// </param>
-    
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder: builder);
 
-        builder.ApplyConfigurationsFromAssembly(typeof(CommonConstant).Assembly);
-
+        builder.ApplyConfigurationsFromAssembly(typeof(DependencyInjection).Assembly);
         RemoveAspNetPrefixInIdentityTable(builder: builder);
+
+        EntityDataSeedingModelBuilder.Seed(builder);
     }
 
     /// <summary>

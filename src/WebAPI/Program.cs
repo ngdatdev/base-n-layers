@@ -1,3 +1,4 @@
+using Application;
 using DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,12 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 var services = builder.Services;
-var config = builder.Configuration;
+var configuration = builder.Configuration;
 services.AddControllers();
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
-services.ConfigSqlServerRelationalDatabase(configuration: config);
-
+services.ConfigSqlServerRelationalDatabase(configuration: configuration);
+services.ConfigApplication(configuration: configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

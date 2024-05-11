@@ -4,6 +4,7 @@ using DataAccess.Data.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240511090308_Init-3")]
+    partial class Init3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -128,17 +131,7 @@ namespace DataAccess.Migrations
                         new
                         {
                             RoleId = new Guid("c39aa1ac-8ded-46be-870c-115b200b09fc"),
-                            CreatedAt = new DateTime(2024, 5, 11, 9, 7, 53, 407, DateTimeKind.Utc).AddTicks(337),
-                            CreatedBy = new Guid("2ed6fb47-86a6-46e3-a9dc-ff5b3d986c2f"),
-                            RemovedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            RemovedBy = new Guid("c8500b46-b134-4b60-85b7-8e6af1187e1c"),
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedBy = new Guid("c8500b46-b134-4b60-85b7-8e6af1187e1c")
-                        },
-                        new
-                        {
-                            RoleId = new Guid("c8500b46-b134-4b60-85b7-8e6af1187e0c"),
-                            CreatedAt = new DateTime(2024, 5, 11, 9, 7, 53, 407, DateTimeKind.Utc).AddTicks(342),
+                            CreatedAt = new DateTime(2024, 5, 11, 9, 3, 8, 606, DateTimeKind.Utc).AddTicks(5734),
                             CreatedBy = new Guid("2ed6fb47-86a6-46e3-a9dc-ff5b3d986c2f"),
                             RemovedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RemovedBy = new Guid("c8500b46-b134-4b60-85b7-8e6af1187e1c"),
@@ -220,7 +213,7 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("2ed6fb47-86a6-46e3-a9dc-ff5b3d986c2f"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ddc028ae-5e84-4e04-9b2c-55a68b2926d3",
+                            ConcurrencyStamp = "851ad700-3392-4058-9d61-4c3e82dee142",
                             Email = "nvdatdz8b@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
@@ -276,7 +269,7 @@ namespace DataAccess.Migrations
                         {
                             UserId = new Guid("2ed6fb47-86a6-46e3-a9dc-ff5b3d986c2f"),
                             AvatarUrl = "url.com/img",
-                            CreatedAt = new DateTime(2024, 5, 11, 9, 7, 53, 407, DateTimeKind.Utc).AddTicks(494),
+                            CreatedAt = new DateTime(2024, 5, 11, 9, 3, 8, 606, DateTimeKind.Utc).AddTicks(5878),
                             CreatedBy = new Guid("2ed6fb47-86a6-46e3-a9dc-ff5b3d986c2f"),
                             FirstName = "Nguyen",
                             LastName = "Dat",

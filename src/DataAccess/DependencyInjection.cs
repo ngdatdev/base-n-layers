@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using DataAccess.ServiceConfigs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,6 +26,7 @@ public static class DependencyInjection
     )
     {
         services.ConfigSqlServerContextPool(configuration: configuration);
+        services.ConfigCore();
         services.ConfigAspNetCoreIdentity(configuration: configuration);
     }
 }
