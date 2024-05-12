@@ -102,4 +102,6 @@ public interface IBaseRepository<TEntity>
     ///     A task containing result of operation.
     /// </returns>
     Task DeleteAsync(TEntity entity, CancellationToken cancellationToken);
+
+    
 }

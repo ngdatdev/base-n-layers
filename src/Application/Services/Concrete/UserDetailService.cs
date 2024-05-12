@@ -25,14 +25,11 @@ namespace Application.Services.Concrete
             var userDetails = await _unitOfWork.UserDetailRepository.GetAllAsync(
                 cancellationToken: cancellationToken
             );
-            return userDetails
-                .Select(userDetail => new UserDetailResponse
-                {
-                    // FullName = $"{userDetail.FirstName} {userDetail.LastName}",
-                    // AvtUrl = userDetail.AvatarUrl,
-                    FullName = ":a"
-                })
-                .ToList();
+            return userDetails.Select(userDetail => new UserDetailResponse
+            {
+                FullName = $"{userDetail.FirstName} {userDetail.LastName}",
+                AvtUrl = userDetail.AvatarUrl,
+            });
         }
     }
 }

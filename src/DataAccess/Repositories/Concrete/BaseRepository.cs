@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Repositories.Concrete
 {
-    internal class BaseRepository<TEntity> : IBaseRepository<TEntity>
+    internal abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
         where TEntity : class, IBaseEntity
     {
         protected readonly DbSet<TEntity> _dbSet;
@@ -22,7 +22,7 @@ namespace DataAccess.Repositories.Concrete
 
         public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken)
         {
-            return await _dbSet.ToArrayAsync();
+            return await _dbSet.ToListAsync(cancellationToken: cancellationToken);
         }
 
         public Task<TEntity> GetByIdAsync(Guid id, CancellationToken cancellationToken)

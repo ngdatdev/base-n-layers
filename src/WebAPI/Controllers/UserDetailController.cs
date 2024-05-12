@@ -20,9 +20,9 @@ public class UserDetailController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<UserDetailResponse> Get(CancellationToken cancellationToken)
+    public async Task<ActionResult<UserDetailResponse>> Get(CancellationToken cancellationToken)
     {
-        var userDetail = _userDetailService.GetAllUserDetails(cancellationToken: cancellationToken);
+        var  userDetail = await _userDetailService.GetAllUserDetails(cancellationToken: cancellationToken);
         return Ok(userDetail);
     }
 }
