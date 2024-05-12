@@ -1,4 +1,11 @@
+using System;
+using System.Net;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using WebAPI.ApiResponse;
 
 namespace WebAPI.Middleware;
 
@@ -24,9 +31,9 @@ internal sealed class GlobalExceptionHandler : IExceptionHandler
         httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
 
         await httpContext.Response.WriteAsJsonAsync(
-            value: new CommonResponse
+            value: new ErrorHttpResponse
             {
-                AppCode = (int)OtherAppCode.SERVER_ERROR,
+                HttpCode = StatusCodes.Status500InternalServerError,
                 ErrorMessages =
                 [
                     "Server has encountered an error !!",
