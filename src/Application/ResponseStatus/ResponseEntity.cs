@@ -1,5 +1,5 @@
-namespace Application.ResponseStatus
-{
+namespace Application.ResponseStatus;
+
     public sealed class ResponseEntity<T>
         where T : class
     {
@@ -7,4 +7,4 @@ namespace Application.ResponseStatus
 
         public ResponseStatusCode StatusCode { get; init; }
     }
-}
+

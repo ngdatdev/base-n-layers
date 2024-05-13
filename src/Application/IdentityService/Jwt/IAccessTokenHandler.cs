@@ -1,13 +1,22 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
-namespace Application.IdentityService.Jwt
+namespace Application.IdentityService.Jwt;
+
+/// <summary>
+///     Represent jwt generator interface.
+/// </summary>
+public interface IAccessTokenHandler
 {
-    public interface IAccessTokenHandler
-    {
-        public string GenerateSigningToken(IEnumerable<Claim> claims);
-    }
+    /// <summary>
+    ///     Generate jwt base on list of claims.
+    /// </summary>
+    /// <param name="claims">
+    ///     List of user claims.
+    /// </param>
+    /// <returns>
+    ///     A string having format of jwt
+    ///     or empty string if validate fail.
+    /// </returns>
+    public string GenerateSigningToken(IEnumerable<Claim> claims);
 }

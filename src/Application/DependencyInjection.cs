@@ -3,9 +3,13 @@ using Application.Services.Interfaces;
 using DataAccess;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ServiceConfigs;
 
 namespace Application;
 
+/// <summary>
+///     Configure services for this layer.
+/// </summary>
 public static class DependencyInjection
 {
     /// <summary>
@@ -18,11 +22,10 @@ public static class DependencyInjection
     ///     Load configuration for configuration
     ///     file (appsetting).
     public static void ConfigApplication(
-        this IServiceCollection services,
-        IConfigurationManager configuration
+        this IServiceCollection services
     )
     {
-        // services.ConfigSqlServerRelationalDatabase(configuration: configuration);
-        services.AddScoped<IUserDetailService, UserDetailService>();
+        services.ConfigCore();
+        services.ConfigJwtIdentity();
     }
 }

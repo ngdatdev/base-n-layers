@@ -14,7 +14,8 @@ services.AddControllers();
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 services.ConfigSqlServerRelationalDatabase(configuration: configuration);
-services.ConfigApplication(configuration: configuration);
+services.ConfigApplication();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

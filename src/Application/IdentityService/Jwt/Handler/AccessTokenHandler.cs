@@ -11,10 +11,6 @@ namespace Application.IdentityService.Jwt.Handler;
 /// <summary>
 ///     Implementation of jwt generator interface.
 /// </summary>
-
-/// <summary>
-///     Implementation of jwt generator interface.
-/// </summary>
 internal sealed class AccessTokenHandler : IAccessTokenHandler
 {
     private readonly JsonWebTokenHandler _jsonWebTokenHandler;
