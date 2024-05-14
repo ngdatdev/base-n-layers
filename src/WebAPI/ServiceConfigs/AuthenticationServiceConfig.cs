@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -14,7 +11,8 @@ namespace WebAPI.ServiceConfigs;
 /// <summary>
 ///     Authentication service config.
 /// </summary>
-internal static class AuthenticationServiceConfig { 
+internal static class AuthenticationServiceConfig
+{
     internal static void ConfigAuthentication(
         this IServiceCollection services,
         IConfigurationManager configuration
@@ -43,13 +41,15 @@ internal static class AuthenticationServiceConfig {
             };
 
         services
+            .AddSingleton(implementationInstance: option)
+            .AddSingleton(implementationInstance: tokenValidationParameters)
             .AddAuthentication(configureOptions: config =>
             {
-                config.DefaultAuthenticateScheme = option.Common.DefaultAuthenticateScheme;
-                config.DefaultScheme = option.Common.DefaultScheme;
-                config.DefaultChallengeScheme = option.Common.DefaultChallengeScheme;
+                config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme; // give a try
+                config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddJwtBearer(configureOptions: config => config.TokenValidationParameters =
-                GetTokenValidationParameters(configuration: configuration));
+            .AddJwtBearer(configureOptions: config =>
+                config.TokenValidationParameters = tokenValidationParameters
+            );
     }
 }
