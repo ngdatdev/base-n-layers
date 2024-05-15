@@ -9,12 +9,15 @@ namespace DataAccess.Repositories.Interfaces;
 
 /// <summary>
 ///     Represent methods that encapsulate queries
-///     to interact with "UserDetails" table.
+///     to interact with "Users" table.
 /// </summary>
 /// <remarks>
 ///     All repository interfaces must implement
 ///     <seealso cref="IBaseRepository{TEntity}"/> interface.
 /// </remarks>
-public interface IUserDetailRepository : IBaseRepository<UserDetail> { 
-    
+public interface IUserRepository : IBaseRepository<User>
+{
+    Task<User> FindUserByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task<bool> IsUserTemporarilyRemovedAsync(Guid id, CancellationToken cancellationToken);
+    Task<bool> IsUserFoundByIdAsync(Guid id, CancellationToken cancellationToken);
 }
