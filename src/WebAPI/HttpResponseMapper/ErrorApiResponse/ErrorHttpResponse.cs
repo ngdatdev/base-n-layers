@@ -10,14 +10,6 @@ namespace WebAPI.ApiResponse
     {
         [JsonIgnore]
         public int HttpCode { get; init; }
-
-        public DateTime ResponseTime { get; init; } =
-            TimeZoneInfo.ConvertTimeFromUtc(
-                dateTime: DateTime.UtcNow,
-                destinationTimeZone: TimeZoneInfo.FindSystemTimeZoneById(
-                    id: "SE Asia Standard Time"
-                )
-            );
             
         public IEnumerable<string> ErrorMessages { get; init; } = [];
     }
