@@ -1,12 +1,13 @@
 using System;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Http;
 
 namespace WebAPI.ApiResponse;
 
 public class SuccessHttpResponse
 {
     [JsonIgnore]
-    public int HttpCode { get; init; } = 400;
+    public int HttpCode { get; init; } = StatusCodes.Status200OK;
 
     public DateTime ResponseTime { get; init; } =
         TimeZoneInfo.ConvertTimeFromUtc(

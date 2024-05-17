@@ -51,5 +51,6 @@ internal static class AuthenticationServiceConfig
             .AddJwtBearer(configureOptions: config =>
                 config.TokenValidationParameters = tokenValidationParameters
             );
+            
     }
 }

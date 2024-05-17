@@ -31,24 +31,26 @@ namespace WebAPI.Middleware
             _serviceScopeFactory = serviceScopeFactory;
         }
 
-        public async Task InvokeAsync(HttpContext context, CancellationToken ct)
+        public async Task InvokeAsync(HttpContext context)
         {
-            var enpoint = context.GetEndpoint();
-            var requireJwtAttribute = enpoint.Metadata.GetMetadata<RequireJwtAttribute>();
+            CancellationToken ct = context?.RequestAborted ?? CancellationToken.None;
+            var endpoint = context.GetEndpoint();
+            var requireJwtAttribute = endpoint.Metadata.GetMetadata<RequireJwtAttribute>();
             if (Equals(objA: requireJwtAttribute, objB: default))
             {
                 await _next(context);
                 return;
             }
 
-            // if (!context.Request.Headers.ContainsKey("Authorization"))
-            // {
-            //     await SendResponseAsync(
-            //         context: context,
-            //         statusCode: StatusCodes.Status403Forbidden
-            //     );
-            //     return;
-            // }
+            if (!context.Request.Headers.ContainsKey("Authorization"))
+            {
+                await SendResponseAsync(
+                    context: context,
+                    statusCode: StatusCodes.Status403Forbidden,
+                    cancellationToken: ct
+                );
+                return;
+            }
 
             JsonWebTokenHandler jsonWebTokenHandler = new();
 
@@ -153,7 +155,17 @@ namespace WebAPI.Middleware
         )
         {
             context.Response.StatusCode = statusCode;
-            return context.Response.WriteAsync("Forbidden", cancellationToken: cancellationToken);
+        context.Response.ContentType = "application/json";
+
+        var result = new
+        {
+            status = statusCode,
+            error = "Forbidden",
+        
+        };
+
+        var json = System.Text.Json.JsonSerializer.Serialize(result);
+        return context.Response.WriteAsync(text: json, cancellationToken: cancellationToken );
         }
     }
 }

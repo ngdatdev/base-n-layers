@@ -2,7 +2,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.DTOs.Response;
 using Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Attribute.JwtAttribute;
 
 namespace WebAPI.Controllers;
 
@@ -18,10 +20,23 @@ public class UserDetailController : ControllerBase
     }
 
     [HttpGet]
+    [RequireJwt]
     public async Task<ActionResult<UserDetailResponse>> Get(CancellationToken cancellationToken)
     {
-        var  userDetail = await _userDetailService.GetAllUserDetails(cancellationToken: cancellationToken);
+        var userDetail = await _userDetailService.GetAllUserDetails(
+            cancellationToken: cancellationToken
+        );
         return Ok(userDetail);
     }
 
+    [Route("/hehe")]
+    [HttpGet]
+    [Authorize]
+    public async Task<ActionResult<UserDetailResponse>> GetA(CancellationToken cancellationToken)
+    {
+        var userDetail = await _userDetailService.GetAllUserDetails(
+            cancellationToken: cancellationToken
+        );
+        return Ok(userDetail);
+    }
 }

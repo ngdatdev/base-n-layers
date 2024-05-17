@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Application.Services.Concrete;
 using Application.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.JsonWebTokens;
 
 namespace ServiceConfigs;
 
@@ -16,5 +17,6 @@ internal static class CoreServiceConfig
     internal static void ConfigCore(this IServiceCollection services)
     {
         services.AddScoped<IUserDetailService, UserDetailService>();
+        services.AddSingleton<JsonWebTokenHandler>();
     }
 }
