@@ -15,6 +15,14 @@ namespace DataAccess.Repositories.Interfaces;
 ///     All repository interfaces must implement
 ///     <seealso cref="IBaseRepository{TEntity}"/> interface.
 /// </remarks>
-public interface IRefreshTokenRepository : IBaseRepository<RefreshToken> { 
-    Task<bool> IsRefreshTokenFoundByAccessTokenIdQueryAsync(Guid accessTokenId, CancellationToken cancellationToken);
+public interface IRefreshTokenRepository : IBaseRepository<RefreshToken>
+{
+    Task<bool> IsRefreshTokenFoundByAccessTokenIdQueryAsync(
+        Guid accessTokenId,
+        CancellationToken cancellationToken
+    );
+    Task<bool> CreateRefreshTokenAsync(
+        RefreshToken refreshToken,
+        CancellationToken cancellationToken
+    );
 }

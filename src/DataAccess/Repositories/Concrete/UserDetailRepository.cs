@@ -26,9 +26,26 @@ internal sealed class UserDetailRepository : BaseRepository<UserDetail>, IUserDe
         _userDetails = _context.Set<UserDetail>();
     }
 
+    public Task<UserDetail> GetUserDetailByUserIdAsync(
+        Guid userId,
+        CancellationToken cancellationToken
+    )
+    {
+        return _userDetails
+            .AsNoTracking()
+            .Where(userDetail => userDetail.UserId == userId)
+            .Select(userDetail => new UserDetail()
+            {
+                FirstName = userDetail.FirstName,
+                LastName = userDetail.LastName,
+                AvatarUrl = userDetail.AvatarUrl,
+            })
+            .FirstOrDefaultAsync(cancellationToken: cancellationToken);
+    }
+
     public Task<bool> IsUserTemporarilyRemovedAsync(Guid id, CancellationToken cancellationToken)
     {
-          return _userDetails.AnyAsync(
+        return _userDetails.AnyAsync(
             predicate: userDetail =>
                 userDetail.UserId == id
                 && userDetail.RemovedBy != CommonConstant.App.DEFAULT_ENTITY_ID_AS_GUID

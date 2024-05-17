@@ -18,4 +18,5 @@ namespace DataAccess.Repositories.Interfaces;
 public interface IUserDetailRepository : IBaseRepository<UserDetail>
 {
     Task<bool> IsUserTemporarilyRemovedAsync(Guid id, CancellationToken cancellationToken);
+    Task<UserDetail> GetUserDetailByUserIdAsync(Guid userId, CancellationToken cancellationToken);
 }

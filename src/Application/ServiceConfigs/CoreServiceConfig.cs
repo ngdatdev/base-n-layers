@@ -17,6 +17,8 @@ internal static class CoreServiceConfig
     internal static void ConfigCore(this IServiceCollection services)
     {
         services.AddScoped<IUserDetailService, UserDetailService>();
+        services.AddScoped<IAuthService, AuthService>();
+
         services.AddSingleton<JsonWebTokenHandler>();
     }
 }
