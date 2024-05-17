@@ -23,4 +23,5 @@ public class UserDetailController : ControllerBase
         var  userDetail = await _userDetailService.GetAllUserDetails(cancellationToken: cancellationToken);
         return Ok(userDetail);
     }
+
 }
