@@ -9,8 +9,10 @@ namespace DataAccess.UnitOfWork;
 /// </summary>
 public sealed class SqlUnitOfWork : IUnitOfWork
 {
-    private IUserDetailRepository _getUserDetailRepository;
     private readonly DatabaseContext _context;
+    private IUserDetailRepository _getUserDetailRepository;
+    private IUserRepository _getUserRepository;
+    private IRefreshTokenRepository _refreshTokenRepository;
 
     public SqlUnitOfWork(DatabaseContext context)
     {
@@ -24,6 +26,26 @@ public sealed class SqlUnitOfWork : IUnitOfWork
             _getUserDetailRepository ??= new UserDetailRepository(context: _context);
 
             return _getUserDetailRepository;
+        }
+    }
+
+    public IRefreshTokenRepository RefreshTokenRepository
+    {
+        get
+        {
+            _refreshTokenRepository ??= new RefreshTokenRepository(context: _context);
+
+            return _refreshTokenRepository;
+        }
+    }
+
+    public IUserRepository UserRepository
+    {
+        get
+        {
+            _getUserRepository ??= new UserRepository(context: _context);
+
+            return _getUserRepository;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace DataAccess.Repositories.Concrete
             IRefreshTokenRepository
     {
         private readonly DatabaseContext _context;
-        private DbSet<RefreshToken> _refreshTokens;
+        private readonly DbSet<RefreshToken> _refreshTokens;
 
         internal RefreshTokenRepository(DatabaseContext context)
             : base(context)

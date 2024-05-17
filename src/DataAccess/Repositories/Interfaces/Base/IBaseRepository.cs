@@ -49,25 +49,10 @@ public interface IBaseRepository<TEntity>
     ///     the request.
     /// </param>
     /// <returns>
-    ///     A task containing the found entity.
+    ///     A task boolean containing the found entity.
     /// </returns>
-    Task<TEntity> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
-    /// <summary>
-    ///     Asynchronously change the state of entity to
-    ///     <seealso cref="EntityState.Added"/>.
-    /// </summary>
-    /// <param name="newEntity">
-    ///     The entity for adding to the database.
-    /// </param>
-    /// <param name="cancellationToken">
-    ///     A token that is used for notifying system
-    ///     to cancel the current operation when user stop
-    ///     the request.
-    /// </param>
-    /// <returns>
-    ///     A task containing result of operation.
-    /// </returns>
+
     Task AddAsync(TEntity newEntity, CancellationToken cancellationToken);
 
     /// <summary>
@@ -82,7 +67,7 @@ public interface IBaseRepository<TEntity>
     ///     the request.
     /// </param>
     /// <returns>
-    ///     A task containing result of operation.
+    ///     A task boolean containing result of operation.
     /// </returns>
     Task UpdateAsync(TEntity entity, CancellationToken cancellationToken);
 
@@ -99,9 +84,7 @@ public interface IBaseRepository<TEntity>
     ///     the request.
     /// </param>
     /// <returns>
-    ///     A task containing result of operation.
+    ///     A task boolean containing result of operation.
     /// </returns>
     Task DeleteAsync(TEntity entity, CancellationToken cancellationToken);
-
-    
 }

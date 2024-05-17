@@ -13,7 +13,7 @@ namespace DataAccess.Repositories.Concrete
     internal sealed class UserRepository : BaseRepository<User>, IUserRepository
     {
         private readonly DatabaseContext _context;
-        private DbSet<User> _users;
+        private readonly DbSet<User> _users;
 
         public UserRepository(DatabaseContext context)
             : base(context)

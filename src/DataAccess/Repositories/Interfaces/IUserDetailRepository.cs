@@ -15,6 +15,7 @@ namespace DataAccess.Repositories.Interfaces;
 ///     All repository interfaces must implement
 ///     <seealso cref="IBaseRepository{TEntity}"/> interface.
 /// </remarks>
-public interface IUserDetailRepository : IBaseRepository<UserDetail> { 
-    
+public interface IUserDetailRepository : IBaseRepository<UserDetail>
+{
+    Task<bool> IsUserTemporarilyRemovedAsync(Guid id, CancellationToken cancellationToken);
 }

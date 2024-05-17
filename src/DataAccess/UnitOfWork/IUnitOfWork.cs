@@ -11,4 +11,16 @@ public interface IUnitOfWork
     ///     UserDetail comment repository.
     /// </summary>
     IUserDetailRepository UserDetailRepository { get; }
+
+    /// <summary>
+    ///     User comment repository.
+    /// </summary>
+    IUserRepository UserRepository { get; }
+
+    /// <summary>
+    ///     User comment repository.
+    /// </summary>
+    IRefreshTokenRepository RefreshTokenRepository { get; }
+
+    
 }

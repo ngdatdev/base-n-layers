@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using DataAccess.Data.DataContext;
@@ -8,6 +7,9 @@ using DataAccess.Entities.Base;
 using DataAccess.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
+/// <summary>
+///     Implementation of base interface repository.
+/// </summary>
 namespace DataAccess.Repositories.Concrete
 {
     internal abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
@@ -25,14 +27,9 @@ namespace DataAccess.Repositories.Concrete
             return await _dbSet.ToListAsync(cancellationToken: cancellationToken);
         }
 
-        public Task<TEntity> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        public async Task AddAsync(TEntity newEntity, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task AddAsync(TEntity newEntity, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
+            await _dbSet.AddAsync(newEntity, cancellationToken: cancellationToken);
         }
 
         public Task UpdateAsync(TEntity entity, CancellationToken cancellationToken)
@@ -44,5 +41,6 @@ namespace DataAccess.Repositories.Concrete
         {
             throw new NotImplementedException();
         }
+
     }
 }
