@@ -7,7 +7,7 @@ namespace Application.DTOs.Request;
 
 public class LoginRequest
 {
-    public string Username { get; init; }
+    public string Username { get; set; }
     public string Password { get; init; }
     public bool IsRemember { get; init; }
 }

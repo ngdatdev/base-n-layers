@@ -30,6 +30,17 @@ namespace DataAccess.Repositories.Concrete
                 .FirstOrDefaultAsync(cancellationToken: cancellationToken);
         }
 
+        public Task<User> FindUserByUsernameAsync(
+            string username,
+            CancellationToken cancellationToken
+        )
+        {
+            return _users
+                .AsNoTracking()
+                .Where(user => user.UserName == username)
+                .FirstOrDefaultAsync(cancellationToken: cancellationToken);
+        }
+
         public async Task<bool> IsUserFoundByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             return await _users.AnyAsync(

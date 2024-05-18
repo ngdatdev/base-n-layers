@@ -29,6 +29,16 @@ internal sealed class ErrorHttpResponseManager
                     ErrorMessages = ["Inputs is not valid"]
                 }
         );
+
+         _dictionary.Add(
+            key: ResponseStatusCode.USERNAME_IS_NOT_FOUND,
+            value: () =>
+                new()
+                {
+                    HttpCode = StatusCodes.Status404NotFound,
+                    ErrorMessages = ["Username is not found"]
+                }
+        );
     }
 
     internal Func<ErrorHttpResponse> Resolve(ResponseStatusCode statusCode)

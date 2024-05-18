@@ -19,4 +19,5 @@ public interface IUserRepository : IBaseRepository<User>
 {
     Task<User> FindUserByIdAsync(Guid id, CancellationToken cancellationToken);
     Task<bool> IsUserFoundByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task<User> FindUserByUsernameAsync(string username, CancellationToken cancellationToken);
 }

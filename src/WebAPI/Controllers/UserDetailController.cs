@@ -20,7 +20,6 @@ public class UserDetailController : ControllerBase
     }
 
     [HttpGet]
-    [RequireJwt]
     public async Task<ActionResult<UserDetailResponse>> Get(CancellationToken cancellationToken)
     {
         var userDetail = await _userDetailService.GetAllUserDetails(
@@ -31,7 +30,7 @@ public class UserDetailController : ControllerBase
 
     [Route("/hehe")]
     [HttpGet]
-    [Authorize]
+    [RequireJwt]
     public async Task<ActionResult<UserDetailResponse>> GetA(CancellationToken cancellationToken)
     {
         var userDetail = await _userDetailService.GetAllUserDetails(

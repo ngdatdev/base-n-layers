@@ -7,6 +7,7 @@ using Application.DTOs.Request;
 using Application.Services.Interfaces;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.HttpResponseMapper;
 
 namespace WebAPI.Controllers;
 
@@ -32,6 +33,6 @@ public class AuthController : ControllerBase
             loginRequest: loginRequest,
             cancellationToken: cancellationToken
         );
-        return Ok(loginResponse);
+        return LazyHttResponseMapper.ToApiResponse(loginResponse);
     }
 }

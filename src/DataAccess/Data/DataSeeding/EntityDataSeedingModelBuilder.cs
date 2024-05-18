@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using DataAccess.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Shared.Common;
 
@@ -109,12 +110,16 @@ namespace DataAccess.Data.DataSeeding
 
         private static User InitAdmin()
         {
+            var passwordHasher = new PasswordHasher<User>();
             User admin = new User
             {
                 Id = AdminId,
                 UserName = "admin",
-                Email = "nvdatdz8b@gmail.com"
+                Email = "nvdatdz8b@gmail.com",
             };
+
+            // Set the password
+            admin.PasswordHash = passwordHasher.HashPassword(admin, "zxcl123123");
 
             return admin;
         }
