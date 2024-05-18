@@ -77,13 +77,13 @@ public class GlobalJwtAuthentication
         }
 
         var jtiClaim = context.User.FindFirstValue(claimType: JwtRegisteredClaimNames.Jti);
-
+        var a = context.User.Claims;
         await using var scope = _serviceScopeFactory.CreateAsyncScope();
         var unitOfWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
 
         var isRefreshTokenFound =
             await unitOfWork.RefreshTokenRepository.IsRefreshTokenFoundByAccessTokenIdQueryAsync(
-                accessTokenId: Guid.Parse(jtiClaim),
+                accessTokenId: Guid.Parse(input: jtiClaim),
                 cancellationToken: ct
             );
 
@@ -173,6 +173,6 @@ public class GlobalJwtAuthentication
             cancellationToken: cancellationToken
         );
 
-        await context.Response.CompleteAsync(); 
+        await context.Response.CompleteAsync();
     }
 }

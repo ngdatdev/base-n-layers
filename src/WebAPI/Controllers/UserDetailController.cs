@@ -28,8 +28,8 @@ public class UserDetailController : ControllerBase
         return Ok(userDetail);
     }
 
-    [Route("/hehe")]
-    [HttpGet]
+    [HttpGet("/hehe")]
+    [Authorize]
     [RequireJwt]
     public async Task<ActionResult<UserDetailResponse>> GetA(CancellationToken cancellationToken)
     {
