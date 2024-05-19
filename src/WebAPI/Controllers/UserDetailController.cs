@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -48,16 +49,9 @@ public class UserDetailController : ControllerBase
         return Ok(userDetail);
     }
 
-    [Authorize(AuthenticationSchemes = "Bearer")]
     [HttpGet("/kaka")]
     public ActionResult<List<string>> GetB()
     {
-        var claims = _httpContextAccessor.HttpContext.User.Claims;
-        List<string> strings = new List<string>();
-        foreach (var claim in claims)
-        {
-            strings.Add($"Claim Type: {claim.Type}, Claim Value: {claim.Value}");
-        }
-        return strings;
+        throw new Exception("hehe");
     }
 }

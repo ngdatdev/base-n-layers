@@ -37,7 +37,6 @@ internal sealed class GlobalExceptionHandler : IExceptionHandler
                 ErrorMessages =
                 [
                     "Server has encountered an error !!",
-                    "Please contact admin for support.",
                 ]
             },
             cancellationToken: cancellationToken

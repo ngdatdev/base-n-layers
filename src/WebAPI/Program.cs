@@ -38,7 +38,12 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<GlobalJwtAuthentication>();
-
+// app.UseMiddleware<GlobalExceptionHandlerCustom>();
+app.UseExceptionHandler();
+app.MapGet("/books/get-by-author", () =>
+{
+    throw new NotImplementedException();
+});
 app.MapControllers();
 
 app.Run();

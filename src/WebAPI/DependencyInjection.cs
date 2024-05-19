@@ -27,5 +27,8 @@ internal static class DependencyInjection
     {
         services.ConfigAuthentication(configuration: configuration);
         services.ConfigAuthorization();
+        services.ConfigureExceptionHandler();
+        services.ConfigCore(configuration: configuration);
+        services.ConfigCors();
     }
 }

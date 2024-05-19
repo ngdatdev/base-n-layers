@@ -11,7 +11,7 @@ namespace WebAPI.HttpResponseMapper;
 /// <summary>
 ///     extension methods to response api.
 /// </summary>
-internal static class LazyHttResponseMapper
+internal static class HttResponseMapper
 {
     private static ErrorHttpResponseManager _errorHttpResponseManager;
 

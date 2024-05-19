@@ -76,8 +76,7 @@ public class GlobalJwtAuthentication
             );
         }
 
-        var jtiClaim = context.User.FindFirstValue(claimType: JwtRegisteredClaimNames.Sub);
-        var a = context.User.Claims;
+        var jtiClaim = context.User.FindFirstValue(claimType: JwtRegisteredClaimNames.Jti);
         await using var scope = _serviceScopeFactory.CreateAsyncScope();
         var unitOfWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
 
@@ -99,7 +98,7 @@ public class GlobalJwtAuthentication
 
         var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
         // Get the sub claim from the access token.
-        var subClaim = context.User.FindFirstValue(claimType: JwtRegisteredClaimNames.Jti);
+        var subClaim = context.User.FindFirstValue(claimType: JwtRegisteredClaimNames.Sub);
 
         // Find user by user id.
         var foundUser = await userManager.FindByIdAsync(
