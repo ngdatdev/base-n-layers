@@ -1,11 +1,16 @@
+using System;
+using System.Text;
 using Application;
 using DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.JsonWebTokens;
 using WebAPI;
 using WebAPI.Middleware;
 
+Console.OutputEncoding = Encoding.UTF8;
+JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -18,7 +23,6 @@ services.AddSwaggerGen();
 services.ConfigWebAPIService(configuration: configuration);
 services.ConfigApplication();
 services.ConfigSqlServerRelationalDatabase(configuration: configuration);
-
 
 var app = builder.Build();
 
@@ -33,7 +37,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.UseMiddleware<GlobalJwtAuthentication>();
 
 app.MapControllers();

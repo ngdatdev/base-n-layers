@@ -47,6 +47,7 @@ internal static class AuthenticationServiceConfig
             {
                 config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme; // give a try
                 config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                config.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             })
             .AddJwtBearer(configureOptions: config =>
                 config.TokenValidationParameters = tokenValidationParameters

@@ -22,8 +22,7 @@ public class AuthController : ControllerBase
         _authService = authService;
     }
 
-    [HttpPost]
-    [Route("/login")]
+    [HttpPost("/login")]
     public async Task<IActionResult> Login(
         [FromBody] LoginRequest loginRequest,
         CancellationToken cancellationToken

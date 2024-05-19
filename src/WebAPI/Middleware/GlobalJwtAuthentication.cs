@@ -76,7 +76,7 @@ public class GlobalJwtAuthentication
             );
         }
 
-        var jtiClaim = context.User.FindFirstValue(claimType: JwtRegisteredClaimNames.Jti);
+        var jtiClaim = context.User.FindFirstValue(claimType: JwtRegisteredClaimNames.Sub);
         var a = context.User.Claims;
         await using var scope = _serviceScopeFactory.CreateAsyncScope();
         var unitOfWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
@@ -99,7 +99,7 @@ public class GlobalJwtAuthentication
 
         var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
         // Get the sub claim from the access token.
-        var subClaim = context.User.FindFirstValue(claimType: JwtRegisteredClaimNames.Sub);
+        var subClaim = context.User.FindFirstValue(claimType: JwtRegisteredClaimNames.Jti);
 
         // Find user by user id.
         var foundUser = await userManager.FindByIdAsync(
@@ -161,7 +161,7 @@ public class GlobalJwtAuthentication
 
         // var json = System.Text.Json.JsonSerializer.Serialize(result);
         // return context.Response.WriteAsync(text: json, cancellationToken: cancellationToken);
-        context.Response.Clear(); // give a delete try
+        // context.Response.Clear(); // give a delete try
         context.Response.StatusCode = StatusCodes.Status500InternalServerError;
 
         await context.Response.WriteAsJsonAsync(
