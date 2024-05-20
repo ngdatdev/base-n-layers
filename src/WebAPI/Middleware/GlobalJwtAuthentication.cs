@@ -153,14 +153,6 @@ public class GlobalJwtAuthentication
         CancellationToken cancellationToken
     )
     {
-        // context.Response.StatusCode = statusCode;
-        // context.Response.ContentType = "application/json";
-
-        // var result = new { status = statusCode, error = "Forbidden", };
-
-        // var json = System.Text.Json.JsonSerializer.Serialize(result);
-        // return context.Response.WriteAsync(text: json, cancellationToken: cancellationToken);
-        // context.Response.Clear(); // give a delete try
         context.Response.StatusCode = StatusCodes.Status500InternalServerError;
 
         await context.Response.WriteAsJsonAsync(
