@@ -43,7 +43,8 @@ internal sealed class GlobalExceptionHandlerCustom
                     HttpCode = StatusCodes.Status500InternalServerError,
                     ErrorMessages =
                     [
-                        "Server has encountered an error !"
+                        "Server has encountered an error !",
+                        exception.Message
                     ]
                 }
             );

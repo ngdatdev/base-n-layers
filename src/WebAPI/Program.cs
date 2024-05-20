@@ -14,7 +14,6 @@ JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 var services = builder.Services;
 var configuration = builder.Configuration;
 services.AddControllers();
@@ -37,13 +36,10 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseCors();
 app.UseMiddleware<GlobalJwtAuthentication>();
-// app.UseMiddleware<GlobalExceptionHandlerCustom>();
-app.UseExceptionHandler();
-app.MapGet("/books/get-by-author", () =>
-{
-    throw new NotImplementedException();
-});
+app.UseMiddleware<GlobalExceptionHandlerCustom>();
+
 app.MapControllers();
 
 app.Run();

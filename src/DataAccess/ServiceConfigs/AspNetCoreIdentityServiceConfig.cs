@@ -6,11 +6,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.AspNetCoreIdentity;
 
-namespace DataAccess.ServiceConfigs
+namespace DataAccess.ServiceConfigs;
+
+    /// <summary>
+    ///     AspnetCore Identity service config.
+    /// </summary>
+internal static class AspNetCoreIdentityServiceConfig
 {
-    internal static class AspNetCoreIdentityServiceConfig
-    {
-        internal static void ConfigAspNetCoreIdentity(
+    internal static void ConfigAspNetCoreIdentity(
         this IServiceCollection services,
         IConfigurationManager configuration
     )
@@ -21,7 +24,7 @@ namespace DataAccess.ServiceConfigs
                 var option = configuration
                     .GetRequiredSection(key: "AspNetCoreIdentity")
                     .Get<AspNetCoreIdentityOption>();
-                
+
                 config.Password.RequireDigit = option.Password.RequireDigit;
                 config.Password.RequireLowercase = option.Password.RequireLowercase;
                 config.Password.RequireNonAlphanumeric = option.Password.RequireNonAlphanumeric;
@@ -45,6 +48,5 @@ namespace DataAccess.ServiceConfigs
             })
             .AddEntityFrameworkStores<DatabaseContext>()
             .AddDefaultTokenProviders();
-    }
     }
 }

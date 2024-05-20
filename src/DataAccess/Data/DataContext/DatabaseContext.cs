@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Data.DataContext;
 
+/// <summary>
+///     Implementation of database context.
+/// </summary>
 public class DatabaseContext : IdentityDbContext<User, Role, Guid>
 {
     public DatabaseContext(DbContextOptions<DatabaseContext> options)
